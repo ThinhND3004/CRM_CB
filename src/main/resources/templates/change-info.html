@@ -85,32 +85,32 @@
             <div class="sidebar-nav navbar-collapse slimscrollsidebar">
                 <ul class="nav" id="side-menu">
                     <li style="padding: 10px 0 0;">
-                        <a href="index.html" class="waves-effect"><i class="fa fa-clock-o fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
+                        <a  th:href="@{/index}" class="waves-effect"><i class="fa fa-clock-o fa-fw"
+                                                                        aria-hidden="true"></i><span class="hide-menu">Dashboard</span></a>
                     </li>
                     <li>
-                        <a href="user-table.html" class="waves-effect"><i class="fa fa-user fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
+                        <a th:href="@{/member}" class="waves-effect"><i class="fa fa-user fa-fw"
+                                                                        aria-hidden="true"></i><span class="hide-menu">Thành viên</span></a>
                     </li>
                     <li>
-                        <a href="role-table.html" class="waves-effect"><i class="fa fa-modx fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
+                        <a th:href="@{/role/table}" class="waves-effect"><i class="fa fa-modx fa-fw"
+                                                                            aria-hidden="true"></i><span class="hide-menu">Quyền</span></a>
                     </li>
                     <li>
-                        <a href="groupwork.html" class="waves-effect"><i class="fa fa-table fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
+                        <a th:href="@{/job}" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                     aria-hidden="true"></i><span class="hide-menu">Dự án</span></a>
                     </li>
                     <li>
-                        <a href="task.html" class="waves-effect"><i class="fa fa-table fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
+                        <a th:href="@{/task}" class="waves-effect"><i class="fa fa-table fa-fw"
+                                                                      aria-hidden="true"></i><span class="hide-menu">Công việc</span></a>
                     </li>
                     <li>
-                        <a href="blank.html" class="waves-effect"><i class="fa fa-columns fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
+                        <a th:href="@{/blank}" class="waves-effect"><i class="fa fa-columns fa-fw"
+                                                                       aria-hidden="true"></i><span class="hide-menu">Blank Page</span></a>
                     </li>
                     <li>
-                        <a th:href="@{/404.html}" class="waves-effect"><i class="fa fa-info-circle fa-fw"
-                                aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
+                        <a th:href="@{/403}" class="waves-effect"><i class="fa fa-info-circle fa-fw"
+                                                                     aria-hidden="true"></i><span class="hide-menu">Error 404</span></a>
                     </li>
                 </ul>
             </div>
@@ -130,14 +130,17 @@
                     <div class="col-md-2 col-12"></div>
                     <div class="col-md-8 col-xs-12">
                         <div class="white-box">
-                            <form class="form-horizontal form-material" th:action="@{/role/chaneInfo/{id} (id = ${roleID})}" method="post">
+                            <div th:if="${processMessage != null}" class="alert alert-danger" role="alert">
+                                <span th:text="${processMessage}"></span>
+                            </div>
+                            <form class="form-horizontal form-material" th:action="@{/role/changeInfo/{id} (id = ${roleID})}" method="post">
                                 <div class="form-group">
-                                    <p th:if="${description}" class="alert-success">Thêm thành công</p>
-                                    <p th:if="${description == false}" class="alert-danger">Thêm thất bại</p>
+                                    <p th:if="${CHANGE_INFO_MESSAGE == false}" class="alert-success">Sửa thành công</p>
+                                    <p th:if="${CHANGE_INFO_MESSAGE}" class="alert-danger">Sửa thất bại</p>
                                     <label class="col-md-12">Tên quyền</label>
-                                    <select id="mySelect" name="roleName">
-                                        <option th:each="role : ${listRole}" th:value="${role.getName()}" th:text="${role.getName()}"></option>
-                                    </select>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Role Name" class="form-control form-control-line" th:value="${roleName}"  name="roleName"/>
+                                    </div>
                                 </div>
 
                                 <div class="form-group">
@@ -149,9 +152,10 @@
                                 <div class="form-group">
                                     <div class="col-sm-12">
                                         <button type="submit" class="btn btn-success">Fix Role</button>
-                                        <a href="role-table.html" class="btn btn-primary">Quay lại</a>
+                                        <a th:href="@{/role/table}" class="btn btn-primary">Quay lại</a>
                                     </div>
                                 </div>
+
                             </form>
                         </div>
                     </div>

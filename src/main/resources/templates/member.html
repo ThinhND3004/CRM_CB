@@ -126,7 +126,7 @@
                     <h4 class="page-title">Danh sách quyền</h4>
                 </div>
                 <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12 text-right">
-                    <a th:href="@{/role/addRole}" class="btn btn-sm btn-success">Thêm mới</a>
+                    <a th:href="@{/role/add}" class="btn btn-sm btn-success">Thêm mới</a>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -137,23 +137,26 @@
                         <div class="table-responsive">
                             <table class="table" id="example">
                                 <thead>
-                                <span class="alert-danger" th:if="${DELETE_ROLE_MESSAGE != null}" th:text="${DELETE_ROLE_MESSAGE}"></span>
+                                <span class="alert-success" th:if="${success}">Xóa role thành công</span>
+                                <span class="alert-danger" th:if="${success == false}">Xóa role thất bại</span>
 
                                 <tr>
                                     <th>STT</th>
-                                    <th>Tên Quyền</th>
-                                    <th>Mô Tả</th>
-                                    <th>Hành Động</th>
+                                    <th>Fullname</th>
+                                    <th>Email</th>
+                                    <th>Role</th>
+                                    <th>Hành động</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="item, index : ${roleList}">
+                                <tr th:each="user, index : ${users}">
                                     <td th:text="${index.count}"></td>
-                                    <td th:text="${item.name}"></td>
-                                    <td th:text="${item.description}"></td>
+                                    <td th:text="${user.fullname}"></td>
+                                    <td th:text="${user.email}"></td>
+                                    <td th:text="${user.roleEntity.name}"></td>
                                     <td>
-                                        <a th:href="@{/role/changeInfo/{id} (id = ${item.getId()})}" class="btn btn-sm btn-primary">Sửa</a>
-                                        <a th:href="@{/role/deleteRole/{id} (id = ${item.getId()})}" class="btn btn-sm btn-danger">Xóa</a>
+                                        <a th:href="@{/#}" class="btn btn-sm btn-primary">Sửa</a>
+                                        <a th:href="@{/#}" class="btn btn-sm btn-danger">Xóa</a>
                                     </td>
                                 </tr>
 

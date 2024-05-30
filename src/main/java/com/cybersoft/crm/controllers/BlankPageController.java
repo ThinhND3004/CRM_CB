@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/black")
+@RequestMapping("/blank")
 public class BlankPageController {
 
     @GetMapping
     public String blankPage()
     {
-        return "black";
+        return "blank";
     }
 
 }

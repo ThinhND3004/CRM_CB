@@ -19,6 +19,24 @@ public class RoleEntity {
     @OneToMany(mappedBy = "roleEntity")
     private List<UserEntity> entityList;
 
+    public RoleEntity(int id, String name, String description, List<UserEntity> entityList) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.entityList = entityList;
+    }
+
+    public RoleEntity() {
+        this.name = "";
+        this.description = "";
+        this.entityList = null;
+    }
+
+    public RoleEntity(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public int getId() {
         return id;
     }

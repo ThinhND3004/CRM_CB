@@ -8,4 +8,6 @@ import java.util.List;
 public interface TaskServiceImp {
     List<TasksEntity> getAllByUserId(UserEntity user);
 
+    List<TasksEntity> getAllTask();
+
 }

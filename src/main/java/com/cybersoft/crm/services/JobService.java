@@ -6,6 +6,8 @@ import com.cybersoft.crm.services.Imp.JobServiceImp;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class JobService implements JobServiceImp {
     @Autowired
@@ -15,5 +17,12 @@ public class JobService implements JobServiceImp {
         JobsEntity job = jobRepository.getById(id);
 
         return job;
+    }
+
+    @Override
+    public List<JobsEntity> getAllJob() {
+        List<JobsEntity> jobsEntities = jobRepository.findAll();
+
+        return jobsEntities;
     }
 }

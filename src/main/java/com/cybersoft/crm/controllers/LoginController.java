@@ -50,6 +50,7 @@ public class LoginController {
     @PostMapping("")
     public String LoginHandler(@RequestParam String email, @RequestParam String password, Model model, HttpServletResponse response)
     {
+        String error = "";
         if(loginServiceImp.checkLogin(email, password))
         {
             UserEntity user = loginServiceImp.getByEmail(email);
@@ -64,16 +65,10 @@ public class LoginController {
             response.addCookie(userEmail);
             response.addCookie(userPassword);
             response.addCookie(userRole);
-
-
-
             return "redirect:/index";
         } else {
-
-            System.out.println("That bai");
-            UserEntity user = loginServiceImp.getByEmail(email);
-            System.out.println("Kiem tra: " + user.getFullname());
-            model.addAttribute("loginFail", true);
+            error = "Incorrect Username Or Password";
+            model.addAttribute("errorMessage", error);
             return "login";
         }
 

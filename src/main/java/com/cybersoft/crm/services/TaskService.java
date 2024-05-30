@@ -23,4 +23,11 @@ public class TaskService implements TaskServiceImp {
 
 
     }
+
+    @Override
+    public List<TasksEntity> getAllTask() {
+        List<TasksEntity> tasksEntities = taskRepository.findAll();
+
+        return tasksEntities;
+    }
 }
